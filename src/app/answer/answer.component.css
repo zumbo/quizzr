@@ -1,0 +1,11 @@
+.correct {
+    background-color: rgb(0, 175, 0);
+}
+.wrong {
+    background-color: red;
+}
+
+a.disabled {
+    cursor: not-allowed;
+    text-decoration: underline;
+}

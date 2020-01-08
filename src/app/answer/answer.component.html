@@ -1,0 +1,10 @@
+<div class="col-md-3">
+    <p>
+        <a class="btn btn-secondary" href="#" role="button" 
+          (click)="submitAnswer()"
+          [ngClass]="{'correct': correct, 'wrong': wrong}"
+          [class.disabled]="disabled">
+            {{text}}
+        </a>
+    </p>
+</div>
