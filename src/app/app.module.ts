@@ -4,8 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
-import { AnswerComponent } from './answer/answer.component';
+import { MultipleChoiceComponent } from './quiz/multiple-choice/multiple-choice.component';
+import { AnswerComponent } from './quiz/answer/answer.component';
+import { AdminModule } from './admin/admin.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AnswerComponent } from './answer/answer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

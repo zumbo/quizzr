@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizQuestion } from '../data/quiz-question';
-import { QuizzerService } from '../quizzer.service';
+import { QuizzerService } from '../../quizzer.service';
 
 @Component({
   selector: 'app-multiple-choice',

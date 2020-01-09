@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <p>{{quizQuestion?.question}}</p>
+</div>
+
+<div class="row">
+  <app-answer 
+    *ngFor="let answer of quizQuestion?.answers; let i = index"
+    [index]="i" [text]="answer"
+    [correct]="i==correctIndex" [wrong]="i==wrongIndex"
+    [disabled]="hasAnswer()"
+    (answer)="onAnswer($event)">
+  </app-answer>
+</div>
+
+<hr>
+<div class="row" *ngIf="hasAnswer()">
+  <div class="col-md-3">
+    <a class="btn btn-secondary" href="#" role="button" 
+    (click)="continue()">
+      Weiter
+    </a>
+  </div>
+</div>
