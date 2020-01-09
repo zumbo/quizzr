@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminFormComponent } from './admin-form/admin-form.component';
+import { QuestionFormComponent } from './question-form/question-form.component';
+import { QuestionListComponent } from './question-list/question-list.component';
+import { EllipsisPipe } from './ellipsis.pipe';
 
 
 @NgModule({
-  declarations: [AdminFormComponent],
+  declarations: [QuestionFormComponent, QuestionListComponent, EllipsisPipe],
   imports: [
     CommonModule,
     AdminRoutingModule,

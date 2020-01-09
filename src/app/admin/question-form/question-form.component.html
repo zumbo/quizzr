@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form [formGroup]="adminForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="questionForm" (ngSubmit)="submitForm()">
             <div class="form-group">
                 <label>Frage:</label>
                 <input formControlName="question" class="form-control">
@@ -11,11 +11,11 @@
             </div>
             <fieldset class="form-group" formArrayName="wrongAnswers">
                 <label>Falsche Antworten:</label>
-                <input *ngFor="let wrongAnswer of adminForm.controls.wrongAnswers.controls; index as i" type="text"  class="form-control"
+                <input *ngFor="let wrongAnswer of questionForm.controls.wrongAnswers.controls; index as i" type="text"  class="form-control"
                 [formControlName]="i"> 
             </fieldset>
             <button type="submit" class="btn btn-primary"
-            [disabled]="adminForm.invalid">Speichern</button>
+            [disabled]="questionForm.invalid">Speichern</button>
         </form>
     </div>
 </div>

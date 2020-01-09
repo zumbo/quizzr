@@ -21,7 +21,7 @@ export class MultipleChoiceComponent implements OnInit {
   updateQuestion() {
     this.correctIndex = -1;
     this.wrongIndex = -1;
-    this.quizzerService.getQuestion().subscribe(q => this.quizQuestion = q);
+    this.quizzerService.getQuizQuestion().subscribe(q => this.quizQuestion = q);
   }
 
   hasAnswer(): boolean {
