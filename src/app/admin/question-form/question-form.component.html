@@ -1,21 +1,21 @@
-<div class="row">
-    <div class="col-md-12">
-        <form [formGroup]="questionForm" (ngSubmit)="submitForm()">
-            <div class="form-group">
-                <label>Frage:</label>
-                <input formControlName="question" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Antwort:</label>
-                <input formControlName="answer" class="form-control">
-            </div>
-            <fieldset class="form-group" formArrayName="wrongAnswers">
-                <label>Falsche Antworten:</label>
-                <input *ngFor="let wrongAnswer of questionForm.controls.wrongAnswers.controls; index as i" type="text"  class="form-control"
-                [formControlName]="i"> 
-            </fieldset>
-            <button type="submit" class="btn btn-primary"
-            [disabled]="questionForm.invalid">Speichern</button>
-        </form>
+
+<form [formGroup]="questionForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+        <label>Frage:</label>
+        <input formControlName="text" class="form-control">
     </div>
-</div>
+    <div class="form-group">
+        <label>Antwort:</label>
+        <input formControlName="answer" class="form-control">
+    </div>
+    <fieldset class="form-group" formArrayName="wrongAnswers">
+        <label>Falsche Antworten:</label>
+        <input *ngFor="let wrongAnswer of questionForm.controls.wrongAnswers.controls; index as i" type="text"  class="form-control"
+        [formControlName]="i"> 
+    </fieldset>
+    <div class="btn-toolbar" role="toolbar">
+        <button type="submit" class="btn btn-primary mx-1" [disabled]="questionForm.invalid">Speichern</button>
+        <button type="button" class="btn btn-secondary mx-1" *ngIf="id > 0" (click)=onDelete()>Löschen</button>
+        <button type="button" class="btn btn-secondary mx-1" (click)=onBack()>Zurück</button>
+    </div>
+</form>

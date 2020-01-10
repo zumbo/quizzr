@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Question } from '../data/question';
 import { QuizzerService } from 'src/app/quizzer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-form',
@@ -12,26 +12,30 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionFormComponent implements OnInit {
   questionForm: FormGroup;
   question: Question;
+  id: number;
 
   constructor(private fb: FormBuilder,
               private quizzerService: QuizzerService,
-              private route: ActivatedRoute) {
-    this.question = { id: 0, text: '', answer: '', wrongAnswers: ['', '', ''] };
-   }
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.question = { id: this.id, text: '', answer: '', wrongAnswers: ['', '', ''] };
+  }
 
   ngOnInit() {
     this.buildForm();
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (id > 0) {
-      this.quizzerService.getQuestion(id).subscribe(q => {
-         this.question = q; this.buildForm();
+
+    if (this.id > 0) {
+      this.quizzerService.getQuestion(this.id).subscribe(q => {
+         this.question = q;
+         this.buildForm();
         });
     }
   }
 
   buildForm() {
     this.questionForm = this.fb.group({
-      question: [this.question.text, Validators.required],
+      text: [this.question.text, Validators.required],
       answer: [this.question.answer, Validators.required],
       wrongAnswers: this.fb.array([])
     });
@@ -42,6 +46,24 @@ export class QuestionFormComponent implements OnInit {
   }
 
   submitForm() {
+    this.question = {...this.question, ...this.questionForm.value};
+    if (this.id > 0) {
+      this.quizzerService.updateQuestion(this.question).subscribe(q => {
+        this.question = q;
+        this.buildForm();
+      });
+    } else {
+      this.quizzerService.insertQuestion(this.question).subscribe(q => {
+        this.onBack();
+      });
+    }
   }
 
+  onDelete() {
+    this.quizzerService.deleteQuestion(this.id).subscribe(() => this.onBack());
+  }
+
+  onBack() {
+    this.router.navigateByUrl('admin');
+  }
 }

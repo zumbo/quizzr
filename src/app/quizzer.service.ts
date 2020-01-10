@@ -10,7 +10,7 @@ import { Question } from './admin/data/question';
 export class QuizzerService {
   constructor(private http: HttpClient) { }
 
-  private const url = 'http://localhost:8080/';
+  private url = 'http://localhost:8080/';
 
   getQuizQuestion(): Observable<QuizQuestion> {
     return this.http.get<QuizQuestion>(this.url + 'api/question');
@@ -37,6 +37,6 @@ export class QuizzerService {
   }
 
   deleteQuestion(id: number) {
-    this.http.delete<Question>(this.url + 'admin/questions/' + id);
+    return this.http.delete<Question>(this.url + 'admin/questions/' + id);
   }
 }
